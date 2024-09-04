@@ -10,7 +10,7 @@ BINDIR = ./bin
 SOURCES = $(wildcard $(SRCDIR)/*.java)
 CLASSES = $(patsubst $(SRCDIR)/%.java,$(BINDIR)/%.class,$(SOURCES))
 
-# Default target
+# Default target compiles all the source files
 default:
 	$(JC) $(JFLAGS) -d $(BINDIR) $(SOURCES)
 # Run the CalculatorTest
