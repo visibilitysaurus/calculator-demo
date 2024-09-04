@@ -5,25 +5,20 @@ JC = javac
 JFLAGS = -g
 
 # Source and class files
-SRCDIR = ./
-BINDIR = ./
+SRCDIR = ./src
+BINDIR = ./bin
 SOURCES = $(wildcard $(SRCDIR)/*.java)
 CLASSES = $(patsubst $(SRCDIR)/%.java,$(BINDIR)/%.class,$(SOURCES))
 
 # Default target
-default: $(CLASSES)
-
-# Compile Java source files into classes
-$(BINDIR)/%.class: $(SRCDIR)/%.java
-    $(JC) $(JFLAGS) -d $(BINDIR) $<
-
+default:
+	$(JC) $(JFLAGS) -d $(BINDIR) $(SOURCES)
 # Run the CalculatorTest
-test: $(CLASSES)
-    java -cp $(BINDIR) CalculatorTest
-
+test: default
+	java -cp $(BINDIR) CalculatorTest
 # Clean the compiled classes
 clean:
-    rm -rf $(BINDIR)/*
+	rm -rf $(BINDIR)/*
 
 .PHONY: default test clean
 
